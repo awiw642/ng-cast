@@ -1,6 +1,10 @@
 <div class="search-bar form-inline">
-  <input class="form-control" type="text" />
-  <button class="btn" ng-click="$ctrl.youtubeSearch()">
+  <input class="form-control"
+    type="text"
+    ng-model="$ctrl.searchInput"
+    ng-keyup="($event.keyCode === 13 || $event.keyCode === 32 ) && $ctrl.handleSearch()"
+  />
+  <button class="btn" ng-click="$ctrl.handleSearch()">
     <span class="glyphicon glyphicon-search"></span>
   </button>
 </div>

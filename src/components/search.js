@@ -1,18 +1,22 @@
 angular.module('video-player')
 
+  .controller('searchCtrl', function(youTube) {
+    this.handleSearch = () => {
+      youTube.search(this.searchInput).then((data) => {
+        this.results(data);
+      });
+    };
+  })
+
   .component('search', {
-    controller: function(youTube) {
-
-      this.result = function() {
-        youTube.search();
-      };
-
-      this.youtubeSearch = function() {
-        console.log('Calling this youtube search');
-        youTube.search('cats', window.YOUTUBE_API_KEY, 5);
-      };
-
+    bindings: {
+      results: '<'
     },
+
+    controller: 'searchCtrl',
 
     templateUrl: 'src/templates/search.html'
   });
+
+
+
